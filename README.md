@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Monorepo
+
+This is a Next.js monorepo that serves multiple applications based on the city and app name specified in environment variables. Each application is organized under its respective directory, utilizing Next.js's App Router feature for efficient routing and organization.
+
+## Directory Structure
+
+The directory structure of this monorepo is as follows:
+
+```
+/my-monorepo
+├── /app
+│   ├── /detroit
+│   │   └── /DCoin
+│   │       ├── /layout.ts
+│   │       └── /page.ts
+│   ├── /newyork
+│   │   └── /SomeApp
+│   │       ├── /layout.ts
+│   │       └── /page.ts
+│   └── /losangeles
+│        └── /AnotherApp
+│           ├── /layout.ts
+│           └── /page.ts
+├── /shared
+│   └── config
+├── /public
+├── package.json
+└── next.config.js
+```
+
+- **`app/`**: Contains all applications structured under their respective city directories.
+- **`shared/`**: Contains shared components or utilities that can be used across different applications.
+- **`public/`**: Contains static files such as images, fonts, and other assets.
+- **`next.config.js`**: Configuration file for Next.js.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone <your-repo-url>
+   cd my-monorepo
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables in a `.env.local` file at the root of the project:
+
+   ```plaintext
+   NEXT_PUBLIC_CITY=detroit
+   NEXT_PUBLIC_APP_NAME=DCoin
+   ```
+
+   You can change the `CITY` and `APP_NAME` values based on which application you want to serve.
+
+### Running the Application
+
+To start the development server, run:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Accessing the Applications
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Open your browser and navigate to `http://localhost:3000/` to access the main page of the current application specified in your environment variables.
+- You can also access subpages directly using URLs like `http://localhost:3000/subpage`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Adding New Applications
 
-## Learn More
+To add a new application:
 
-To learn more about Next.js, take a look at the following resources:
+1. Create a new directory under `app/<city>/` for the new application.
+2. Add a `page.js` file in the new application directory with the desired content.
+3. Update the environment variables in `.env.local` to serve the new application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Shared Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can place any reusable components or utilities in the `shared` directory. They can be imported into your applications as needed.
 
-## Deploy on Vercel
+### Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Contributions are welcome! Please feel free to submit issues or pull requests.
